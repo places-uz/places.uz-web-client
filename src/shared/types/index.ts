@@ -1,5 +1,5 @@
-import { Theme, themes } from "../constants/themes"
-export type { Theme } from "../constants/themes"
+import { Theme } from "shared/constants/themes"
+export type { Theme } from "shared/constants/themes"
 
 export interface User {
 	first_name: string

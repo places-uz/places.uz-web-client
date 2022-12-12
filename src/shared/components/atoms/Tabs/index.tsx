@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import cn from "classnames"
-import { Theme, themes } from "../../../constants/themes"
+import { Theme, themes } from "shared/constants/themes"
 
 export interface Tab {
     value: string

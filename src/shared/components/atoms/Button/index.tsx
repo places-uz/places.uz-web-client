@@ -1,6 +1,6 @@
 import cn from "classnames"
 import { ReactNode } from "react"
-import { themes } from "../../../constants/themes"
+import { themes } from "shared/constants/themes"
 
 interface ButtonProps {
     type?:

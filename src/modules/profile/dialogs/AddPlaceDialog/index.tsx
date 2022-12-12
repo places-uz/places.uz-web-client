@@ -67,6 +67,7 @@ export const AddPlaceDialog = ({ isOpen, setOpen }: AddPlaceDialogProps) => {
                     <div className={"grid grid-cols-5 gap-2"}>
                         {Object.keys(themes).map((theme) => (
                             <button
+                                key={theme}
                                 onClick={() =>
                                     handleThemeChange(theme as Theme)
                                 }

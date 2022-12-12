@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Navigate } from "react-router-dom"
 
 import { PlusIcon } from "@heroicons/react/24/outline"

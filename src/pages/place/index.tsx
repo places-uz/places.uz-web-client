@@ -39,6 +39,7 @@ const PlacePage = () => {
                     <img
                         className={"w-full h-full object-cover rounded-xl"}
                         src={place.cover}
+                        alt={place.name}
                     />
                 )}
 
@@ -49,6 +50,7 @@ const PlacePage = () => {
                                 "w-full rounded-full h-full object-cover"
                             }
                             src={place.logo}
+                            alt={place.name}
                         />
                     )}
                 </div>
@@ -60,7 +62,7 @@ const PlacePage = () => {
                         {place.name}
                     </h1>
 
-                    <section className={"flex justify-between"}>
+                    <section className={"flex justify-between flex-wrap"}>
                         <div className={"flex items-center gap-4"}>
                             <Button
                                 type={"themed"}
@@ -119,7 +121,11 @@ const PlacePage = () => {
                 <section
                     className={"columns-1 md:columns-2 space-y-4 gap-4 mt-5"}>
                     {activeCategory.products?.map((product) => (
-                        <Product theme={place.theme} product={product} />
+                        <Product
+                            key={product.id}
+                            theme={place.theme}
+                            product={product}
+                        />
                     ))}
                 </section>
             )}

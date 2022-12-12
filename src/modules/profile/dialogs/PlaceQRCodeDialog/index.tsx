@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import { Dialog, QRCode } from "shared/components/molecules"
 import { Theme } from "shared/constants/themes"
-import { Button } from "../../../../shared/components/atoms"
-import { Tabs } from "../../../../shared/components/atoms/Tabs"
+import { Button } from "shared/components/atoms"
+import { Tabs } from "shared/components/atoms/Tabs"
 
 interface PlaceQRCodeDialogProps {
     isOpen: boolean

@@ -1,4 +1,4 @@
-import { Place } from "../shared/types"
+import { Place } from "shared/types"
 
 export const MOCK_DATA: Place[] = [
 	{

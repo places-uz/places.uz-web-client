@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { User } from "../../shared/types"
+import { User } from "shared/types"
 
 interface RootState {
 	isLoggedIn: boolean

@@ -45,6 +45,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                     {place.logo && (
                         <img
                             className={"h-12 rounded-lg p-2 bg-white"}
+                            alt={place.name}
                             src={place.logo}
                         />
                     )}
@@ -73,7 +74,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                         className={
                             "text-xs mt-1 cursor-pointer opacity-80 text-white"
                         }>
-                        {place.slug}
+                        @{place.slug}
                     </span>
                 </section>
 
