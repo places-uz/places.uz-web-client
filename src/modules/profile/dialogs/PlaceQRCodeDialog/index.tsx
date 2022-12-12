@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react"
 import { Dialog, QRCode } from "shared/components/molecules"
 import { Theme } from "shared/constants/themes"
 import { Button } from "shared/components/atoms"
 import { Tabs } from "shared/components/atoms/Tabs"
+import { DOM } from "shared/utils"
 
 interface PlaceQRCodeDialogProps {
     isOpen: boolean
@@ -30,7 +31,14 @@ export const PlaceQRCodeDialog = ({
     theme,
     slug
 }: PlaceQRCodeDialogProps) => {
+    const QRCodeRef = useRef<HTMLDivElement>(null)
     const [activeTab, setActiveTab] = useState(tabs[0])
+
+    const handleDownloadQRCode = useCallback(() => {
+        if (QRCodeRef.current !== null) {
+            DOM.convertDOMElementToImage.toSVG(QRCodeRef.current, slug)
+        }
+    }, [QRCodeRef])
 
     return (
         <Dialog isOpen={isOpen} setOpen={setOpen}>
@@ -50,9 +58,10 @@ export const PlaceQRCodeDialog = ({
 
             <section className={"flex items-center mt-6 justify-center"}>
                 <QRCode
-                    value={slug}
-                    theme={theme}
                     themed={activeTab.value === "themed"}
+                    ref={QRCodeRef}
+                    theme={theme}
+                    value={slug}
                 />
             </section>
 
@@ -61,7 +70,10 @@ export const PlaceQRCodeDialog = ({
                     Cancel
                 </Button>
 
-                <Button type={"themed"} theme={theme}>
+                <Button
+                    onClick={handleDownloadQRCode}
+                    type={"themed"}
+                    theme={theme}>
                     Download
                 </Button>
             </section>

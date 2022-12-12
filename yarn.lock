@@ -1546,6 +1546,11 @@ html-parse-stringify@^3.0.1:
   dependencies:
     void-elements "3.1.0"
 
+html-to-image@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/html-to-image/-/html-to-image-1.11.1.tgz#58d6e0ce609d78e40023e6ff48b3d512f93fff73"
+  integrity sha512-W6ZXctQQfhFA2tCcDbK1jCywwT9Oo1ucyXwlxku3zHacyhLPeMhs+h2OLBNeoYrPSgzgeOqhhSs+MbEmL2fDLw==
+
 i18next@*, i18next@^22.3.0:
   version "22.3.0"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.3.0.tgz#77578a4ef566e0e20e9d4f319d7fd0f4bebb26f7"

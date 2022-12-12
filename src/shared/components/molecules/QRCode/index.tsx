@@ -16,10 +16,10 @@ export const QRCode = forwardRef(
         ref: ForwardedRef<HTMLDivElement>
     ) => {
         const classes = cn(
-            "transition-all flex items-center p-8 rounded-xl justify-center w-72",
+            "transition-all flex p-8 items-center rounded-xl justify-center w-72",
 
             {
-                [themes[theme]]: themed === true
+                [themes[theme]]: themed
             }
         )
 
