@@ -1,0 +1,17 @@
+{
+  "translations": {
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "profile": "Profile",
+    "create_account": "Accaunt yaratish",
+
+    "username": "Username",
+    "password": "Password",
+    "e_mail": "E-Mail",
+
+    "places": "Joylar",
+    "add_place": "Joy qo'shish",
+    "payments": "To'lovlar",
+    "edit_menu": "Edit menu"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "translations": {
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "create_account": "Create account",
+
+    "username": "Username",
+    "password": "Password",
+    "e_mail": "E-Mail",
+
+    "places": "Places",
+    "add_place": "Add place",
+    "payments": "Payments",
+    "edit_menu": "Edit menu"
+  }
+}
