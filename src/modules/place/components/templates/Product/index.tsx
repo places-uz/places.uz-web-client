@@ -16,8 +16,11 @@ export const Product = ({ product, theme }: ProductProps) => {
             )}>
             {product.cover && (
                 <img
-                    className={"w-full h-48 bg-white rounded-t-xl object-cover"}
+                    alt={product.name}
                     src={product.cover}
+                    className={
+                        "w-full max-h-96 bg-white rounded-t-xl object-cover"
+                    }
                 />
             )}
             <div className={"p-5 flex flex-col gap-4"}>

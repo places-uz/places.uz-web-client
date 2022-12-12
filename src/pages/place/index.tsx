@@ -27,7 +27,7 @@ const PlacePage = () => {
     const classes = {
         cover: cn("w-full h-64 rounded-xl mt-12 relative", themes[place.theme]),
         logo: cn(
-            "w-36 h-36 rounded-full shadow-xl p-3 bg-white absolute transform left-1/2 -translate-x-1/2 overflow-hidden -bottom-16"
+            "w-36 h-36 border-2 rounded-full shadow-xl p-3 bg-white absolute transform left-1/2 -translate-x-1/2 overflow-hidden -bottom-16"
         )
     }
 
@@ -101,7 +101,7 @@ const PlacePage = () => {
                 )}
             </section>
 
-            <h1 className={"text-4xl mt-10 mb-4 font-semibold"}>Menu</h1>
+            <h1 className={"text-4xl mt-10 mb-4 font-semibold"}>Products</h1>
 
             <section
                 className={

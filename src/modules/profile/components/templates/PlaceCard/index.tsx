@@ -84,7 +84,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                     </Button>
 
                     <Button type={"primary-white"} captionColor={"black"}>
-                        {t("edit_menu")}
+                        Edit place
                     </Button>
                 </section>
             </article>
