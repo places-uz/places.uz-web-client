@@ -105,7 +105,7 @@ const PlacePage = () => {
 
             <section
                 className={
-                    "border-t sticky top-0 bg-gray-100 border-b pt-4 pb-4"
+                    "border-t sticky top-0 bg-gray-100 w-full border-b pt-4 pb-4"
                 }>
                 {place.categories && activeCategory && (
                     <Categories

@@ -21,13 +21,14 @@ export const Categories = ({
     }
 
     return (
-        <section className={"w-full flex flex-wrap  gap-2 rounded-full"}>
+        <section
+            className={"w-full  flex overflow-x-auto scrollbar-hide gap-2"}>
             {categories.map((category) => (
                 <button
                     key={category.id}
                     onClick={() => handleCategoryClick(category)}
                     className={cn(
-                        "rounded-full text-white py-2 px-5",
+                        "rounded-full break-keep text-white min-w-fit py-2 px-5",
                         {
                             "text-white": category.id === activeCategory.id,
                             "text-gray-800 bg-none":
