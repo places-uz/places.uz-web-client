@@ -11,7 +11,7 @@ interface ButtonProps {
         | "themed"
 
     theme?: keyof typeof themes
-    captionColor?: "primary" | "black"
+    captionColor?: "primary" | "black" | "red"
     children: ReactNode
     shadow?: "none" | "lg" | "xl"
     size?: "sm" | "md" | "xs"
@@ -61,7 +61,8 @@ export const Button = ({
             },
             {
                 "text-orange-500": captionColor === "primary",
-                "text-gray-800": captionColor === "black"
+                "text-gray-800": captionColor === "black",
+                "text-red-500": captionColor === "red"
             },
             {
                 "shadow-lg": shadow === "lg",

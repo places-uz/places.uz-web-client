@@ -37,6 +37,10 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         navigate(`/place/${place.slug}`)
     }
 
+    const handlePlaceEdit = () => {
+        navigate(`/edit/${place.slug}`)
+    }
+
     return (
         <>
             <article className={classes.base}>
@@ -83,7 +87,10 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                         {t("payments")}
                     </Button>
 
-                    <Button type={"primary-white"} captionColor={"black"}>
+                    <Button
+                        onClick={handlePlaceEdit}
+                        type={"primary-white"}
+                        captionColor={"black"}>
                         Edit place
                     </Button>
                 </section>

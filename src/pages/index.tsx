@@ -6,6 +6,7 @@ const AuthPage = lazy(() => import("./auth"))
 const RegisterPage = lazy(() => import("./register"))
 const ProfilePage = lazy(() => import("./profile"))
 const PlacePage = lazy(() => import("./place"))
+const EditPlacePage = lazy(() => import("./edit-place"))
 
 export const Routing = () => {
     return (
@@ -15,6 +16,7 @@ export const Routing = () => {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/place/:slug" element={<PlacePage />} />
+            <Route path="/edit/:slug" element={<EditPlacePage />} />
         </Routes>
     )
 }
