@@ -36,7 +36,7 @@ export const CategoryCard = ({ category, theme }: CategoryCardProps) => {
             <article className={classes.base}>
                 <section className={"flex flex-col"}>
                     <div className={"flex items-start justify-between gap-2"}>
-                        <h2 className={"text-3xl text-white"}>
+                        <h2 className={"text-3xl break-all text-white"}>
                             {category.name}
                         </h2>
                         <IconButton

@@ -1,15 +1,15 @@
 import { ChangeEvent, useMemo, useState } from "react"
 import cn from "classnames"
 import { useParams } from "react-router-dom"
+import { PlusIcon } from "@heroicons/react/24/outline"
 
 import { Place, Theme } from "shared/types"
 import { themes } from "shared/constants/themes"
 
 import { MOCK_DATA } from "data/mock"
-import { Button, Input, TextArea } from "../../shared/components/atoms"
-import { PlusIcon } from "@heroicons/react/24/outline"
-import { CategoryCard } from "../../modules/edit-place/components/templates"
-import { AddCategoryDialog } from "../../modules/edit-place/dialogs"
+import { Button, Input, TextArea } from "shared/components/atoms"
+import { CategoryCard } from "modules/edit-place/components/templates"
+import { AddCategoryDialog } from "modules/edit-place/dialogs"
 
 const EditPlacePage = () => {
     const [isAddCategoryDialogOpened, setAddCategoryDialogOpened] =
@@ -71,7 +71,7 @@ const EditPlacePage = () => {
                         Main Information
                     </h1>
 
-                    <div className={"grid grid-cols-2 gap-6"}>
+                    <div className={"grid grid-cols-1 md:grid-cols-2 gap-6"}>
                         <Input
                             onChange={handleInputChange}
                             name={"name"}
