@@ -1,5 +1,6 @@
 import cn from "classnames"
-import { ChangeEvent } from "react"
+import { ChangeEvent, useState } from "react"
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 
 interface InputProps {
     hint?: string
@@ -12,6 +13,8 @@ interface InputProps {
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void
     name?: string
     value?: string
+
+    validate?: (e: ChangeEvent<HTMLInputElement>) => string | null
 }
 
 export const Input = ({
@@ -22,8 +25,11 @@ export const Input = ({
     onChange,
     hintColor = "white",
     size = "md",
-    name
+    name,
+    validate
 }: InputProps) => {
+    const [error, setError] = useState<string | null>(null)
+
     const classes = {
         base: cn(
             "w-full text-sm rounded-lg transition-all bg-gray-100 outline-none px-4 border focus:border-orange-400",
@@ -31,11 +37,28 @@ export const Input = ({
                 "py-2": size === "sm",
                 "py-3.5": size === "md"
             }
+        ),
+
+        errorIcon: cn(
+            "absolute right-3 top-1/2 mt-0.5 text-red-500 transition-all",
+            {
+                "opacity-0": !error
+            }
         )
     }
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        onChange?.(e)
+
+        const validationResult = validate?.(e)
+
+        if (validationResult) {
+            setError(validationResult)
+        }
+    }
+
     return (
-        <div className={"flex flex-col gap-2"}>
+        <div className={"flex flex-col relative gap-2"}>
             {hint && (
                 <span
                     className={cn("text-xs text-white", {
@@ -49,11 +72,17 @@ export const Input = ({
             <input
                 value={value}
                 name={name}
-                onChange={onChange}
+                onChange={handleChange}
                 placeholder={placeholder}
                 spellCheck={false}
                 type={type}
                 className={classes.base}
+            />
+
+            <ExclamationCircleIcon
+                className={classes.errorIcon}
+                width={20}
+                height={20}
             />
         </div>
     )

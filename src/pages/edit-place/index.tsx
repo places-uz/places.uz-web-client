@@ -1,4 +1,4 @@
-import { ChangeEvent, useMemo, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import cn from "classnames"
 import { useParams } from "react-router-dom"
 import { PlusIcon } from "@heroicons/react/24/outline"
@@ -6,49 +6,81 @@ import { PlusIcon } from "@heroicons/react/24/outline"
 import { Place, Theme } from "shared/types"
 import { themes } from "shared/constants/themes"
 
-import { MOCK_DATA } from "data/mock"
 import { Button, Input, TextArea } from "shared/components/atoms"
 import { CategoryCard } from "modules/edit-place/components/templates"
 import { AddCategoryDialog } from "modules/edit-place/dialogs"
+import { useLoad, usePutRequest } from "shared/hooks/request"
+import { PLACES } from "services/api/endpoints"
+import { LoaderOverlay } from "shared/components/molecules"
+import { formatters } from "shared/utils"
 
 const EditPlacePage = () => {
+    const { url } = useParams<{ url: string }>()
+
+    const { request } = usePutRequest<Place>({
+        url: `${PLACES}/${url}`
+    })
+    const { response: place, loading: isPlaceLoading } = useLoad<Place>({
+        url: `${PLACES}/${url}`
+    })
+
     const [isAddCategoryDialogOpened, setAddCategoryDialogOpened] =
         useState(false)
-    const { slug } = useParams<{ slug: string }>()
-
-    const place = useMemo<Place>(
-        () => MOCK_DATA.find((place) => place.slug === slug) as Place,
-        [slug]
-    )
 
     const classes = {
-        cover: cn("w-full h-64 rounded-xl mt-12 relative", themes[place.theme]),
+        cover: cn(
+            "w-full h-64 rounded-xl mt-12 relative",
+            themes[place?.theme ?? "orange"]
+        ),
         logo: cn(
             "w-36 h-36 border-2 rounded-full shadow-xl p-3 bg-white absolute transform left-1/2 -translate-x-1/2 overflow-hidden -bottom-16"
         )
     }
 
-    const [formState, setFormState] = useState<Omit<Place, "id">>({
-        ...place
-    })
+    const [formState, setFormState] = useState<Place | null>(null)
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setFormState((p) => ({ ...p, [e.target.name]: e.target.value }))
+        if (formState !== null && place) {
+            setFormState((p) => ({ ...p, [e.target.name]: e.target.value }))
+        }
     }
 
     const handleThemeChange = (theme: Theme) => {
         setFormState((p) => ({ ...p, theme }))
     }
 
+    useEffect(() => {
+        if (place) {
+            setFormState({ ...place })
+        }
+    }, [place])
+
+    const handleReset = () => {
+        if (place) {
+            setFormState({ ...place })
+        }
+    }
+
+    const handleSubmit = async () => {
+        if (formState) {
+            const { success } = await request({ data: formState })
+
+            if (success) {
+                alert("DONE")
+            }
+        }
+    }
+
     return (
         <>
+            <LoaderOverlay isLoading={isPlaceLoading} />
             <main className={"w-full max-w-4xl px-5 mx-auto"}>
                 <section className={classes.cover}>
                     <div className={cn("w-full h-full absolute")} />
                     {place?.cover && (
                         <img
                             className={"w-full h-full object-cover rounded-xl"}
-                            src={place.cover}
+                            src={formatters.addDomain(place.cover)}
                             alt={place.name}
                         />
                     )}
@@ -59,7 +91,7 @@ const EditPlacePage = () => {
                                 className={
                                     "w-full rounded-full h-full object-cover"
                                 }
-                                src={place.logo}
+                                src={formatters.addDomain(place.logo)}
                                 alt={place.name}
                             />
                         )}
@@ -77,20 +109,20 @@ const EditPlacePage = () => {
                             name={"name"}
                             hintColor={"black"}
                             hint={"Place name"}
-                            value={formState.name}
+                            value={formState?.name}
                         />
 
                         <Input
                             onChange={handleInputChange}
-                            value={formState.slug}
-                            name={"slug"}
+                            value={formState?.url}
+                            name={"url"}
                             hintColor={"black"}
-                            hint={"Place slug"}
+                            hint={"Place URL"}
                         />
 
                         <Input
                             onChange={handleInputChange}
-                            value={formState.phone}
+                            value={formState?.phone}
                             name={"phone"}
                             hintColor={"black"}
                             hint={"Place phone"}
@@ -98,7 +130,7 @@ const EditPlacePage = () => {
 
                         <Input
                             onChange={handleInputChange}
-                            value={formState.address}
+                            value={formState?.address}
                             name={"address"}
                             hintColor={"black"}
                             hint={"Place address"}
@@ -123,7 +155,7 @@ const EditPlacePage = () => {
                                         themes[theme as Theme],
                                         {
                                             "shadow-lg":
-                                                formState.theme === theme
+                                                formState?.theme === theme
                                         }
                                     )}
                                 />
@@ -139,12 +171,22 @@ const EditPlacePage = () => {
 
                     <div>
                         <TextArea
-                            value={formState.information}
+                            value={formState?.information}
                             name={"information"}
                             hint={"Additional Info"}
                             hintColor={"black"}
                         />
                     </div>
+
+                    <section className={"flex mt-12 justify-end"}>
+                        <div className={"flex gap-4"}>
+                            <Button type={"ghost-black"} onClick={handleReset}>
+                                Reset
+                            </Button>
+
+                            <Button onClick={handleSubmit}>Save</Button>
+                        </div>
+                    </section>
                 </section>
 
                 <section className={"mt-12"}>
@@ -159,13 +201,13 @@ const EditPlacePage = () => {
                             icon={<PlusIcon width={20} height={20} />}
                             type={"themed"}
                             size={"xs"}
-                            theme={formState.theme}>
+                            theme={formState?.theme}>
                             Add Category
                         </Button>
                     </div>
 
                     <div className={"columns-1 md:columns-3 space-y-4"}>
-                        {formState.categories?.map((category) => (
+                        {formState?.categories?.map((category) => (
                             <CategoryCard
                                 key={category.id}
                                 theme={formState.theme}
@@ -179,9 +221,10 @@ const EditPlacePage = () => {
             </main>
 
             <AddCategoryDialog
+                url={place?.url as string}
                 isOpen={isAddCategoryDialogOpened}
                 setOpen={setAddCategoryDialogOpened}
-                theme={formState.theme}
+                theme={formState?.theme || "orange"}
             />
         </>
     )

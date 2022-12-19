@@ -13,7 +13,7 @@ export interface User {
 export interface Place {
 	id: number
 	name: string
-	slug: string
+	url: string
 	phone: string
 	address: string
 	theme: Theme

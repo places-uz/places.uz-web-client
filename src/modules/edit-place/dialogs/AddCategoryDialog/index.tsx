@@ -2,14 +2,17 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import { Dialog } from "shared/components/molecules"
 import { Button, Input } from "shared/components/atoms"
 import type { Theme } from "shared/types"
+import { usePostRequest } from "../../../../shared/hooks/request"
 
 interface AddCategoryDialogProps {
     isOpen: boolean
     setOpen: Dispatch<SetStateAction<boolean>>
     theme: Theme
+    url: string
 }
 
 export const AddCategoryDialog = ({
+    url,
     isOpen,
     setOpen,
     theme
@@ -18,8 +21,20 @@ export const AddCategoryDialog = ({
         name: ""
     })
 
+    const { request: handleCategoryCreate } = usePostRequest({
+        url: `places/${url}/categories`
+    })
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormState((p) => ({ ...p, [e.target.name]: e.target.value }))
+    }
+
+    const handleSubmit = async () => {
+        const { success } = await handleCategoryCreate({ data: formState })
+
+        if (success) {
+            alert("DONE")
+        }
     }
 
     return (
@@ -44,7 +59,7 @@ export const AddCategoryDialog = ({
                     Cancel
                 </Button>
 
-                <Button type={"themed"} theme={theme}>
+                <Button onClick={handleSubmit} type={"themed"} theme={theme}>
                     Create
                 </Button>
             </section>

@@ -6,10 +6,18 @@ import { setLoggedIn, setUser } from "store/slices/root"
 import { useTranslation } from "react-i18next"
 import { Button, Input } from "shared/components/atoms"
 import { ChangeEvent, useState } from "react"
+import { SIGNIN } from "services/api/endpoints"
+import { User } from "shared/types"
+import { usePostRequest } from "shared/hooks/request"
+import { signin } from "shared/hooks/utils/auth"
 
 const AuthPage = () => {
+    const { request } = usePostRequest<{ token: string; user: User }>({
+        url: SIGNIN
+    })
+
     const [formState, setFormState] = useState({
-        username: "",
+        email: "",
         password: ""
     })
 
@@ -18,8 +26,14 @@ const AuthPage = () => {
     const navigate = useNavigate()
 
     const handleLogin = async () => {
-        dispatch(setLoggedIn())
-        navigate("/profile")
+        const { response } = await request({ data: formState })
+
+        if (response) {
+            signin(response)
+            navigate("/profile")
+            dispatch(setLoggedIn())
+            dispatch(setUser(response.user))
+        }
     }
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +56,8 @@ const AuthPage = () => {
                 <section className={"flex flex-col gap-5 mt-6"}>
                     <Input
                         onChange={handleInputChange}
-                        name={"username"}
-                        hint={"Username"}
+                        name={"email"}
+                        hint={"E-Mail"}
                     />
 
                     <Input

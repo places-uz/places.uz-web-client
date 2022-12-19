@@ -13,11 +13,11 @@ import { themes } from "shared/constants/themes"
 import { MOCK_DATA } from "data/mock"
 
 const PlacePage = () => {
-    const { slug } = useParams<{ slug: string }>()
+    const { url } = useParams<{ url: string }>()
 
     const place = useMemo<Place>(
-        () => MOCK_DATA.find((place) => place.slug === slug) as Place,
-        [slug]
+        () => MOCK_DATA.find((place) => place.url === url) as Place,
+        [url]
     )
 
     const [activeCategory, setActiveCategory] = useState<Category | null>(

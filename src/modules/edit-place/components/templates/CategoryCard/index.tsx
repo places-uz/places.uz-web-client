@@ -6,13 +6,16 @@ import { Button, IconButton } from "shared/components/atoms"
 import { Theme, themes } from "shared/constants/themes"
 import { Category } from "shared/types"
 import { CategorySettingsDialog } from "../../../dialogs"
+import { useNavigate } from "react-router-dom"
 
 interface CategoryCardProps {
     theme: Theme
-    category: Omit<Category, "id">
+    category: Category
 }
 
 export const CategoryCard = ({ category, theme }: CategoryCardProps) => {
+    const navigate = useNavigate()
+
     const [isCategorySettingsDialogOpen, setCategorySettingsDialogOpen] =
         useState(false)
 
@@ -24,7 +27,7 @@ export const CategoryCard = ({ category, theme }: CategoryCardProps) => {
     }
 
     const handleEditProducts = () => {
-        alert("Edit Products")
+        navigate(`category/${category.id}`)
     }
 
     const handleCategoryDelete = () => {

@@ -2,7 +2,9 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import TSPaths from "vite-tsconfig-paths"
 
-// https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [react(), TSPaths()]
+	plugins: [react(), TSPaths()],
+	server: {
+		port: 3000
+	}
 })

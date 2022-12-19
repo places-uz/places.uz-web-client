@@ -2,15 +2,17 @@ import { useNavigate } from "react-router-dom"
 import { Button, Input } from "shared/components/atoms"
 import { useTranslation } from "react-i18next"
 import { ChangeEvent, useState } from "react"
-import { AUTH } from "../../services/api"
+import { usePostRequest } from "shared/hooks/request"
+import { SIGNUP } from "services/api/endpoints"
 
 const RegisterPage = () => {
+    const { request } = usePostRequest({ url: SIGNUP })
+
     const [formState, setFormState] = useState({
         first_name: "",
         last_name: "",
         email: "",
-        username: "",
-        password1: ""
+        password: ""
     })
 
     const navigate = useNavigate()
@@ -21,14 +23,10 @@ const RegisterPage = () => {
     }
 
     const handleUserRegistration = async () => {
-        try {
-            const { data } = await AUTH.register({
-                ...formState,
-                password2: formState.password1
-            })
-            console.log(data)
-        } catch (err) {
-            console.error(err)
+        const { success } = await request({ data: formState })
+
+        if (success) {
+            navigate("/auth")
         }
     }
 
@@ -62,15 +60,10 @@ const RegisterPage = () => {
                         hint={"E-Mail"}
                         type={"email"}
                     />
+
                     <Input
                         onChange={handleInputChange}
-                        name={"username"}
-                        hint={"Username"}
-                        type={"text"}
-                    />
-                    <Input
-                        onChange={handleInputChange}
-                        name={"password1"}
+                        name={"password"}
                         hint={"Password"}
                         type={"password"}
                     />
