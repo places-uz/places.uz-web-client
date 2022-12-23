@@ -2,10 +2,10 @@ export const Footer = () => {
     return (
         <footer
             className={
-                "w-full items-center flex justify-between h-32 border-t"
+                "flex h-32 w-full items-center justify-between border-t"
             }>
             <section>
-                <div className={"text-sm flex gap-2"}>
+                <div className={"flex gap-2 text-sm"}>
                     With ❤️ by
                     <div className={"flex gap-2"}>
                         <a

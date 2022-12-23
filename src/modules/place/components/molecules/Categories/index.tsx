@@ -22,16 +22,16 @@ export const Categories = ({
 
     return (
         <section
-            className={"w-full  flex overflow-x-auto scrollbar-hide gap-2"}>
+            className={"scrollbar-hide  flex w-full gap-2 overflow-x-auto"}>
             {categories.map((category) => (
                 <button
                     key={category.id}
                     onClick={() => handleCategoryClick(category)}
                     className={cn(
-                        "rounded-full break-keep text-white min-w-fit py-2 px-5",
+                        "min-w-fit break-keep rounded-full py-2 px-5 text-white",
                         {
                             "text-white": category.id === activeCategory.id,
-                            "text-gray-800 bg-none":
+                            "bg-none text-gray-800":
                                 category.id !== activeCategory.id
                         },
                         themes[theme]

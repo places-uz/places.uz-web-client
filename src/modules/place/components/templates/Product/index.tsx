@@ -11,7 +11,7 @@ export const Product = ({ product, theme }: ProductProps) => {
     return (
         <article
             className={cn(
-                "w-full break-inside-avoid rounded-xl flex flex-col text-white",
+                "flex w-full break-inside-avoid flex-col rounded-xl text-white",
                 themes[theme]
             )}>
             {product.cover && (
@@ -19,11 +19,11 @@ export const Product = ({ product, theme }: ProductProps) => {
                     alt={product.name}
                     src={product.cover}
                     className={
-                        "w-full max-h-96 bg-white rounded-t-xl object-cover"
+                        "max-h-96 w-full rounded-t-xl bg-white object-cover"
                     }
                 />
             )}
-            <div className={"p-5 flex flex-col gap-4"}>
+            <div className={"flex flex-col gap-4 p-5"}>
                 <h2 className={"text-2xl font-semibold"}>{product.name}</h2>
 
                 {product.description && (

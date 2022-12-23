@@ -22,7 +22,7 @@ export const LoaderOverlay = ({ isLoading }: LoaderOverlayProps) => {
                     leave="ease-in duration-200"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0">
-                    <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center" />
+                    <div className="fixed inset-0 flex items-center bg-black bg-opacity-60 backdrop-blur-sm" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -37,11 +37,11 @@ export const LoaderOverlay = ({ isLoading }: LoaderOverlayProps) => {
                             leaveTo="opacity-0 scale-95">
                             <HDialog.Panel
                                 className={
-                                    "w-32 h-32 bg-white rounded-lg flex items-center justify-center"
+                                    "flex h-32 w-32 items-center justify-center rounded-lg bg-white"
                                 }>
                                 <div
                                     className={
-                                        "w-14 h-14 rounded-full border-2 border-orange-400 animate-spin border-b-transparent"
+                                        "h-14 w-14 animate-spin rounded-full border-2 border-orange-400 border-b-transparent"
                                     }
                                 />
                             </HDialog.Panel>

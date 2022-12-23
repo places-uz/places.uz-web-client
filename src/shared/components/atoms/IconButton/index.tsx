@@ -7,6 +7,8 @@ interface IconButtonProps {
     captionColor?: "red"
     size?: "sm" | "md"
     shadow?: "md" | "lg"
+
+    className?: string
 }
 
 export const IconButton = ({
@@ -14,7 +16,8 @@ export const IconButton = ({
     onClick,
     captionColor,
     size = "sm",
-    shadow
+    shadow,
+    className
 }: IconButtonProps) => {
     const classes = {
         base: cn(
@@ -29,7 +32,8 @@ export const IconButton = ({
             {
                 "shadow-md": shadow === "md",
                 "shadow-lg": shadow === "lg"
-            }
+            },
+            className
         )
     }
 

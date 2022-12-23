@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export const domain =
-	"http://165.232.88.80:8000" ||
-	`${window.location.protocol}//${window.location.hostname}`
+	"http://143.198.104.247:8000" ||
+	`${window.location.protocol}/${window.location.hostname}`
 
 const baseAxios = axios.create({
 	baseURL: `${domain}/api/v1/`

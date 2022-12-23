@@ -33,17 +33,17 @@ const RegisterPage = () => {
     return (
         <main
             className={
-                "w-full md:px-5 h-screen transition-all bg-orange-500 md:bg-gray-100 flex items-center justify-center"
+                "flex h-screen w-full items-center justify-center bg-orange-500 transition-all md:bg-gray-100 md:px-5"
             }>
             <section
                 className={
-                    "md:shadow-xl transition-all w-full md:w-[400px] p-6 bg-orange-500 md:rounded-xl"
+                    "w-full bg-orange-500 p-6 transition-all md:w-[400px] md:rounded-xl md:shadow-xl"
                 }>
-                <section className={"h-16 flex items-center justify-center"}>
+                <section className={"flex h-16 items-center justify-center"}>
                     <h1 className={"text-4xl text-white"}>places.uz</h1>
                 </section>
 
-                <section className={"flex flex-col gap-5 mt-6"}>
+                <section className={"mt-6 flex flex-col gap-5"}>
                     <Input
                         onChange={handleInputChange}
                         name={"first_name"}
@@ -71,7 +71,7 @@ const RegisterPage = () => {
 
                 <section
                     className={
-                        "mt-10 flex gap-4 items-center flex-col justify-between"
+                        "mt-10 flex flex-col items-center justify-between gap-4"
                     }>
                     <Button
                         onClick={handleUserRegistration}

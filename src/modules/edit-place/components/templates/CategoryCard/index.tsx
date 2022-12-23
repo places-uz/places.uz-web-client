@@ -39,7 +39,7 @@ export const CategoryCard = ({ category, theme }: CategoryCardProps) => {
             <article className={classes.base}>
                 <section className={"flex flex-col"}>
                     <div className={"flex items-start justify-between gap-2"}>
-                        <h2 className={"text-3xl break-all text-white"}>
+                        <h2 className={"break-all text-3xl text-white"}>
                             {category.name}
                         </h2>
                         <IconButton
@@ -49,13 +49,13 @@ export const CategoryCard = ({ category, theme }: CategoryCardProps) => {
                     </div>
                     <span
                         className={
-                            "text-xs mt-1 cursor-pointer opacity-80 text-white"
+                            "mt-1 cursor-pointer text-xs text-white opacity-80"
                         }>
                         {category.products?.length} Products
                     </span>
                 </section>
 
-                <section className={"flex flex-col gap-2 mt-6"}>
+                <section className={"mt-6 flex flex-col gap-2"}>
                     <Button
                         size={"xs"}
                         onClick={handleEditProducts}

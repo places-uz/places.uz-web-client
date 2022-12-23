@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import { Dialog } from "shared/components/molecules"
 import { Button, Input } from "shared/components/atoms"
 import type { Theme } from "shared/types"
-import { usePostRequest } from "../../../../shared/hooks/request"
+import { usePostRequest } from "shared/hooks/request"
 
 interface AddCategoryDialogProps {
     isOpen: boolean
@@ -39,11 +39,11 @@ export const AddCategoryDialog = ({
 
     return (
         <Dialog isOpen={isOpen} setOpen={setOpen}>
-            <h1 className={"font-semibold text-xl text-center"}>
+            <h1 className={"text-center text-xl font-semibold"}>
                 Add Category
             </h1>
 
-            <section className={"flex mt-6 gap-4 flex-col"}>
+            <section className={"mt-6 flex flex-col gap-4"}>
                 <Input
                     onChange={handleInputChange}
                     value={formState.name}
@@ -54,7 +54,7 @@ export const AddCategoryDialog = ({
                 />
             </section>
 
-            <section className={"grid grid-cols-2 mt-6 gap-4"}>
+            <section className={"mt-6 grid grid-cols-2 gap-4"}>
                 <Button onClick={() => setOpen(false)} type={"ghost-black"}>
                     Cancel
                 </Button>

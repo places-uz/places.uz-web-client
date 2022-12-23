@@ -4,6 +4,8 @@ import { Button, Input } from "shared/components/atoms"
 import type { Place, Theme } from "shared/types"
 import { themes } from "shared/constants/themes"
 import cn from "classnames"
+import { ImagesSelect } from "../../components/templates"
+import { formatters } from "shared/utils"
 
 interface PlaceSettingsDialogProps {
     isOpen: boolean
@@ -31,9 +33,14 @@ export const PlaceSettingsDialog = ({
 
     return (
         <Dialog isOpen={isOpen} setOpen={setOpen}>
-            <h1 className={"font-semibold text-xl text-center"}>Edit Place</h1>
+            <h1 className={"text-center text-xl font-semibold"}>Edit Place</h1>
 
-            <section className={"flex mt-6 gap-4 flex-col"}>
+            <section className={"mt-6 flex flex-col gap-4"}>
+                <ImagesSelect
+                    coverURL={formatters.addDomain(formState.cover as string)}
+                    logoURL={formatters.addDomain(formState.logo as string)}
+                />
+
                 <Input
                     onChange={handleInputChange}
                     value={formState.name}
@@ -44,7 +51,7 @@ export const PlaceSettingsDialog = ({
                 />
                 <Input
                     onChange={handleInputChange}
-                    value={formState.slug}
+                    value={formState.url}
                     name={"slug"}
                     hint={"Place slug"}
                     hintColor={"black"}
@@ -78,7 +85,7 @@ export const PlaceSettingsDialog = ({
                                     handleThemeChange(theme as Theme)
                                 }
                                 className={cn(
-                                    "transition-all w-full h-12 rounded-md",
+                                    "h-12 w-full rounded-md transition-all",
                                     themes[theme as Theme],
                                     {
                                         "shadow-lg": formState.theme === theme
@@ -90,7 +97,7 @@ export const PlaceSettingsDialog = ({
                 </section>
             </section>
 
-            <section className={"grid grid-cols-2 mt-6 gap-4"}>
+            <section className={"mt-6 grid grid-cols-2 gap-4"}>
                 <Button onClick={() => setOpen(false)} type={"ghost-black"}>
                     Cancel
                 </Button>

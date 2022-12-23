@@ -1,29 +1,28 @@
+import { ChangeEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 import { useAppDispatch } from "store/hooks"
 import { setLoggedIn, setUser } from "store/slices/root"
-
-import { useTranslation } from "react-i18next"
 import { Button, Input } from "shared/components/atoms"
-import { ChangeEvent, useState } from "react"
 import { SIGNIN } from "services/api/endpoints"
-import { User } from "shared/types"
+import type { User } from "shared/types"
 import { usePostRequest } from "shared/hooks/request"
 import { signin } from "shared/hooks/utils/auth"
 
 const AuthPage = () => {
+    const { t } = useTranslation()
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
     const { request } = usePostRequest<{ token: string; user: User }>({
         url: SIGNIN
     })
 
     const [formState, setFormState] = useState({
-        email: "",
-        password: ""
+        password: "",
+        email: ""
     })
-
-    const { t } = useTranslation()
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate()
 
     const handleLogin = async () => {
         const { response } = await request({ data: formState })
@@ -43,17 +42,17 @@ const AuthPage = () => {
     return (
         <main
             className={
-                "w-full h-screen transition-all bg-orange-500 md:bg-gray-100 flex items-center justify-center"
+                "flex h-screen w-full items-center justify-center bg-orange-500 transition-all md:bg-gray-100"
             }>
             <section
                 className={
-                    "md:shadow-xl transition-all w-full md:w-[400px] p-6 bg-orange-500 md:rounded-xl"
+                    "w-full bg-orange-500 p-6 transition-all md:w-[400px] md:rounded-xl md:shadow-xl"
                 }>
-                <section className={"h-16 flex items-center justify-center"}>
+                <section className={"flex h-16 items-center justify-center"}>
                     <h1 className={"text-4xl text-white"}>places.uz</h1>
                 </section>
 
-                <section className={"flex flex-col gap-5 mt-6"}>
+                <section className={"mt-6 flex flex-col gap-5"}>
                     <Input
                         onChange={handleInputChange}
                         name={"email"}
@@ -70,7 +69,7 @@ const AuthPage = () => {
 
                 <section
                     className={
-                        "mt-10 flex gap-4 items-center flex-col justify-between"
+                        "mt-10 flex flex-col items-center justify-between gap-4"
                     }>
                     <Button
                         onClick={handleLogin}

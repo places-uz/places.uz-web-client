@@ -37,13 +37,13 @@ const HomePage = () => {
 
     return (
         <>
-            <main className={"max-w-5xl px-5 xl:px-0 mx-auto"}>
+            <main className={"mx-auto max-w-5xl px-5 xl:px-0"}>
                 <Navigation />
 
-                <section className={"flex flex-col mt-6"}>
+                <section className={"mt-6 flex flex-col"}>
                     <div
                         className={
-                            "mb-6 flex justify-between border-b pb-6 items-center"
+                            "mb-6 flex items-center justify-between border-b pb-6"
                         }>
                         <h1 className={"text-3xl font-semibold text-gray-800"}>
                             {t("places")}
@@ -64,7 +64,7 @@ const HomePage = () => {
                             as={"div"}
                             show={!loading}
                             className={
-                                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
                             }
                             enter="transition transition-all duration-[400ms] delay-200"
                             enterFrom="opacity-0"

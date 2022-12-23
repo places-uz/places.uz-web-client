@@ -4,8 +4,9 @@ import { Button, Input } from "shared/components/atoms"
 import type { Place, Theme } from "shared/types"
 import { themes } from "shared/constants/themes"
 import cn from "classnames"
-import { usePostRequest } from "../../../../shared/hooks/request"
-import { PLACES } from "../../../../services/api/endpoints"
+import { usePostRequest } from "shared/hooks/request"
+import { PLACES } from "services/api/endpoints"
+import { ImagesSelect } from "../../components/templates"
 
 interface AddPlaceDialogProps {
     isOpen: boolean
@@ -86,49 +87,10 @@ export const AddPlaceDialog = ({
 
     return (
         <Dialog isOpen={isOpen} setOpen={setOpen}>
-            <h1 className={"font-semibold text-xl text-center"}>Add Place</h1>
+            <h1 className={"text-center text-xl font-semibold"}>Add Place</h1>
 
-            <section className={"flex mt-6 gap-4 flex-col"}>
-                <section
-                    className={"w-full mb-8 flex items-center justify-center"}>
-                    <div
-                        className={
-                            "w-full h-32 rounded-xl bg-gray-300 relative"
-                        }>
-                        <input
-                            onChange={handleFileChoose}
-                            name={"cover"}
-                            type={"file"}
-                            hidden
-                            id={"cover"}
-                        />
-                        <input
-                            onChange={handleFileChoose}
-                            name={"logo"}
-                            type={"file"}
-                            hidden
-                            id={"logo"}
-                        />
-
-                        <label htmlFor={"cover"}>
-                            <img
-                                src={images.cover.src}
-                                className={
-                                    "w-full object-cover rounded-xl h-full"
-                                }
-                            />
-                        </label>
-
-                        <label htmlFor={"logo"}>
-                            <img
-                                src={images.logo.src}
-                                className={
-                                    "w-24 h-24 object-cover absolute rounded-full bg-gray-200 -bottom-10 transform -translate-x-1/2 left-1/2"
-                                }
-                            />
-                        </label>
-                    </div>
-                </section>
+            <section className={"mt-6 flex flex-col gap-4"}>
+                <ImagesSelect />
 
                 <Input
                     onChange={handleInputChange}
@@ -170,7 +132,7 @@ export const AddPlaceDialog = ({
                                     handleThemeChange(theme as Theme)
                                 }
                                 className={cn(
-                                    "transition-all w-full h-12 rounded-md",
+                                    "h-12 w-full rounded-md transition-all",
                                     themes[theme as Theme],
                                     {
                                         "shadow-lg": formState.theme === theme
@@ -182,7 +144,7 @@ export const AddPlaceDialog = ({
                 </section>
             </section>
 
-            <section className={"grid grid-cols-2 mt-6 gap-4"}>
+            <section className={"mt-6 grid grid-cols-2 gap-4"}>
                 <Button onClick={() => setOpen(false)} type={"ghost-black"}>
                     Cancel
                 </Button>

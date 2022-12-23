@@ -93,7 +93,6 @@ export function useRequest<R>(
 				...overrideOptions
 			})
 			setResponse(data)
-			console.log("edwed", response)
 			return { response: data, success: true } as Response<R>
 		} catch (e) {
 			if (!axios.isAxiosError(e)) {

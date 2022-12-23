@@ -47,10 +47,10 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         <>
             <article className={classes.base}>
                 <section
-                    className={"flex w-full justify-between items-center mb-4"}>
+                    className={"mb-4 flex w-full items-center justify-between"}>
                     {place.logo && (
                         <img
-                            className={"h-12 rounded-lg p-2 bg-white"}
+                            className={"h-12 rounded-lg bg-white p-2"}
                             alt={place.name}
                             src={`${domain}${place.logo}`}
                         />
@@ -78,13 +78,13 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                     <span
                         onClick={handleSlugClick}
                         className={
-                            "text-xs mt-1 cursor-pointer opacity-80 text-white"
+                            "mt-1 cursor-pointer text-xs text-white opacity-80"
                         }>
                         @{place.url}
                     </span>
                 </section>
 
-                <section className={"flex flex-col gap-2 mt-auto pt-6"}>
+                <section className={"mt-auto flex flex-col gap-2 pt-6"}>
                     <Button captionColor={"black"} type={"primary-white"}>
                         {t("payments")}
                     </Button>
@@ -118,22 +118,22 @@ export const PlaceCardSkeleton = () => {
     return (
         <article
             className={
-                "p-6 bg-gray-200 rounded-xl flex flex-col animate-pulse"
+                "flex animate-pulse flex-col rounded-xl bg-gray-200 p-6"
             }>
-            <div className={"flex justify-between items-center"}>
-                <div className={"w-12 h-12 rounded-lg bg-gray-300"} />
+            <div className={"flex items-center justify-between"}>
+                <div className={"h-12 w-12 rounded-lg bg-gray-300"} />
 
                 <div className={"flex gap-2"}>
-                    <div className={"w-8 h-8 rounded-md bg-gray-300"} />
-                    <div className={"w-8 h-8 rounded-md bg-gray-300"} />
-                    <div className={"w-8 h-8 rounded-md bg-gray-300"} />
+                    <div className={"h-8 w-8 rounded-md bg-gray-300"} />
+                    <div className={"h-8 w-8 rounded-md bg-gray-300"} />
+                    <div className={"h-8 w-8 rounded-md bg-gray-300"} />
                 </div>
             </div>
 
-            <div className={"w-2/3 h-10 rounded-xl mt-6 bg-gray-300"}></div>
-            <div className={"w-1/2 h-4 rounded-xl mt-2 bg-gray-300"}></div>
+            <div className={"mt-6 h-10 w-2/3 rounded-xl bg-gray-300"}></div>
+            <div className={"mt-2 h-4 w-1/2 rounded-xl bg-gray-300"}></div>
 
-            <div className={"w-full pt-4 mt-auto flex flex-col gap-2"}>
+            <div className={"mt-auto flex w-full flex-col gap-2 pt-4"}>
                 <div className={"h-10 rounded-md bg-gray-300"} />
                 <div className={"h-10 rounded-md bg-gray-300"} />
             </div>
@@ -150,7 +150,7 @@ export const PlaceCardSkeletonList = ({
     return (
         <Transition
             show={isLoading}
-            className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"}
+            className={"grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"}
             enter="transition duration-[400ms]"
             enterFrom="opacity-0"
             enterTo="opacity-100"

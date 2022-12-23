@@ -74,12 +74,12 @@ const EditPlacePage = () => {
     return (
         <>
             <LoaderOverlay isLoading={isPlaceLoading} />
-            <main className={"w-full max-w-4xl px-5 mx-auto"}>
+            <main className={"mx-auto w-full max-w-4xl px-5"}>
                 <section className={classes.cover}>
-                    <div className={cn("w-full h-full absolute")} />
+                    <div className={cn("absolute h-full w-full")} />
                     {place?.cover && (
                         <img
-                            className={"w-full h-full object-cover rounded-xl"}
+                            className={"h-full w-full rounded-xl object-cover"}
                             src={formatters.addDomain(place.cover)}
                             alt={place.name}
                         />
@@ -89,7 +89,7 @@ const EditPlacePage = () => {
                         {place?.logo && (
                             <img
                                 className={
-                                    "w-full rounded-full h-full object-cover"
+                                    "h-full w-full rounded-full object-cover"
                                 }
                                 src={formatters.addDomain(place.logo)}
                                 alt={place.name}
@@ -99,11 +99,11 @@ const EditPlacePage = () => {
                 </section>
 
                 <section className={"mt-24"}>
-                    <h1 className={"text-3xl font-semibold mb-6 border-b pb-4"}>
+                    <h1 className={"mb-6 border-b pb-4 text-3xl font-semibold"}>
                         Main Information
                     </h1>
 
-                    <div className={"grid grid-cols-1 md:grid-cols-2 gap-6"}>
+                    <div className={"grid grid-cols-1 gap-6 md:grid-cols-2"}>
                         <Input
                             onChange={handleInputChange}
                             name={"name"}
@@ -137,12 +137,12 @@ const EditPlacePage = () => {
                         />
                     </div>
 
-                    <section className={"flex flex-col gap-2 mt-6"}>
+                    <section className={"mt-6 flex flex-col gap-2"}>
                         <span className={"text-xs"}>Place theme</span>
 
                         <div
                             className={
-                                "grid grid-cols-5 md:grid-cols-10 gap-4"
+                                "grid grid-cols-5 gap-4 md:grid-cols-10"
                             }>
                             {Object.keys(themes).map((theme) => (
                                 <button
@@ -151,7 +151,7 @@ const EditPlacePage = () => {
                                         handleThemeChange(theme as Theme)
                                     }
                                     className={cn(
-                                        "transition-all w-full h-12 rounded-md",
+                                        "h-12 w-full rounded-md transition-all",
                                         themes[theme as Theme],
                                         {
                                             "shadow-lg":
@@ -165,7 +165,7 @@ const EditPlacePage = () => {
                 </section>
 
                 <section className={"mt-12"}>
-                    <h1 className={"text-3xl font-semibold mb-6 border-b pb-4"}>
+                    <h1 className={"mb-6 border-b pb-4 text-3xl font-semibold"}>
                         Secondary Information
                     </h1>
 
@@ -178,7 +178,7 @@ const EditPlacePage = () => {
                         />
                     </div>
 
-                    <section className={"flex mt-12 justify-end"}>
+                    <section className={"mt-12 flex justify-end"}>
                         <div className={"flex gap-4"}>
                             <Button type={"ghost-black"} onClick={handleReset}>
                                 Reset
@@ -192,7 +192,7 @@ const EditPlacePage = () => {
                 <section className={"mt-12"}>
                     <div
                         className={
-                            "flex items-center justify-between border-b pb-4 mb-6"
+                            "mb-6 flex items-center justify-between border-b pb-4"
                         }>
                         <h1 className={"text-3xl font-semibold"}>Categories</h1>
 
@@ -206,7 +206,7 @@ const EditPlacePage = () => {
                         </Button>
                     </div>
 
-                    <div className={"columns-1 md:columns-3 space-y-4"}>
+                    <div className={"columns-1 space-y-4 md:columns-3"}>
                         {formState?.categories?.map((category) => (
                             <CategoryCard
                                 key={category.id}

@@ -24,7 +24,7 @@ export const Navigation = ({ className }: NavigationProps) => {
         <nav className={classes.base}>
             <h1
                 onClick={() => navigate("/")}
-                className={"text-4xl cursor-pointer font-bold"}>
+                className={"cursor-pointer text-4xl font-bold"}>
                 places<span className={"text-orange-500"}>.uz</span>
             </h1>
 

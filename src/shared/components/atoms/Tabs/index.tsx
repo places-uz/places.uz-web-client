@@ -34,7 +34,7 @@ export const Tabs = ({
                     key={tab.value}
                     onClick={() => handleTabClick(tab)}
                     className={cn(
-                        "rounded-full text-white py-2 px-5",
+                        "rounded-full py-2 px-5 text-white",
                         {
                             "text-xs": size === "sm",
                             "text-md": size === "md"
@@ -42,7 +42,7 @@ export const Tabs = ({
 
                         {
                             "text-white": tab.value === activeTab.value,
-                            "text-gray-800 bg-none":
+                            "bg-none text-gray-800":
                                 tab.value !== activeTab.value
                         },
                         themes[theme]

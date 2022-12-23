@@ -42,11 +42,11 @@ export const PlaceQRCodeDialog = ({
 
     return (
         <Dialog isOpen={isOpen} setOpen={setOpen}>
-            <h1 className={"font-semibold text-xl text-center"}>
+            <h1 className={"text-center text-xl font-semibold"}>
                 Download QR Code
             </h1>
 
-            <section className={"flex w-full mt-4 items-center justify-center"}>
+            <section className={"mt-4 flex w-full items-center justify-center"}>
                 <Tabs
                     theme={theme}
                     size={"sm"}
@@ -56,7 +56,7 @@ export const PlaceQRCodeDialog = ({
                 />
             </section>
 
-            <section className={"flex items-center mt-6 justify-center"}>
+            <section className={"mt-6 flex items-center justify-center"}>
                 <QRCode
                     themed={activeTab.value === "themed"}
                     ref={QRCodeRef}
@@ -65,7 +65,7 @@ export const PlaceQRCodeDialog = ({
                 />
             </section>
 
-            <section className={"grid grid-cols-2 mt-6 gap-4"}>
+            <section className={"mt-6 grid grid-cols-2 gap-4"}>
                 <Button onClick={() => setOpen(false)} type={"ghost-black"}>
                     Cancel
                 </Button>

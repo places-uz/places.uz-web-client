@@ -58,7 +58,7 @@ export const Input = ({
     }
 
     return (
-        <div className={"flex flex-col relative gap-2"}>
+        <div className={"relative flex flex-col gap-2"}>
             {hint && (
                 <span
                     className={cn("text-xs text-white", {

@@ -32,12 +32,12 @@ const PlacePage = () => {
     }
 
     return (
-        <main className={"max-w-4xl px-5 mx-auto"}>
+        <main className={"mx-auto max-w-4xl px-5"}>
             <section className={classes.cover}>
-                <div className={cn("w-full h-full absolute")} />
+                <div className={cn("absolute h-full w-full")} />
                 {place?.cover && (
                     <img
-                        className={"w-full h-full object-cover rounded-xl"}
+                        className={"h-full w-full rounded-xl object-cover"}
                         src={place.cover}
                         alt={place.name}
                     />
@@ -47,7 +47,7 @@ const PlacePage = () => {
                     {place?.logo && (
                         <img
                             className={
-                                "w-full rounded-full h-full object-cover"
+                                "h-full w-full rounded-full object-cover"
                             }
                             src={place.logo}
                             alt={place.name}
@@ -57,12 +57,12 @@ const PlacePage = () => {
             </section>
 
             <section className={"mt-24"}>
-                <section className={"flex flex-col border-b pb-4 mb-6"}>
-                    <h1 className={"text-4xl  font-semibold mb-4"}>
+                <section className={"mb-6 flex flex-col border-b pb-4"}>
+                    <h1 className={"mb-4  text-4xl font-semibold"}>
                         {place.name}
                     </h1>
 
-                    <section className={"flex justify-between flex-wrap"}>
+                    <section className={"flex flex-wrap justify-between"}>
                         <div className={"flex items-center gap-4"}>
                             <Button
                                 type={"themed"}
@@ -101,11 +101,11 @@ const PlacePage = () => {
                 )}
             </section>
 
-            <h1 className={"text-4xl mt-10 mb-4 font-semibold"}>Products</h1>
+            <h1 className={"mt-10 mb-4 text-4xl font-semibold"}>Products</h1>
 
             <section
                 className={
-                    "border-t sticky top-0 bg-gray-100 w-full border-b pt-4 pb-4"
+                    "sticky top-0 w-full border-t border-b bg-gray-100 pt-4 pb-4"
                 }>
                 {place.categories && activeCategory && (
                     <Categories
@@ -119,7 +119,7 @@ const PlacePage = () => {
 
             {activeCategory && (
                 <section
-                    className={"columns-1 md:columns-2 space-y-4 gap-4 mt-5"}>
+                    className={"mt-5 columns-1 gap-4 space-y-4 md:columns-2"}>
                     {activeCategory.products?.map((product) => (
                         <Product
                             key={product.id}
